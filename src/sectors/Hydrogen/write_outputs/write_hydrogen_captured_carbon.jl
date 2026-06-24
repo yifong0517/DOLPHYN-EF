@@ -1,0 +1,86 @@
+"""
+MESS: Macro Energy Synthesis System
+Copyright (C) 2022, College of Engineering, Peking University
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+"""
+
+@doc raw"""
+
+"""
+function write_hydrogen_captured_carbon(settings::Dict, inputs::Dict, MESS::Model)
+
+    if settings["WriteLevel"] >= 3
+        hydrogen_settings = settings["HydrogenSettings"]
+        path = hydrogen_settings["SavePath"]
+
+        Z = inputs["Z"]
+        Zones = inputs["Zones"]
+
+        T = inputs["T"]
+        weights = inputs["weights"]
+        Time_Index = inputs["Time_Index"]
+        tsymbols = [Symbol("$t") for t in 1:T]
+
+        hydrogen_inputs = inputs["HydrogenInputs"]
+
+        CCS = hydrogen_inputs["CCS"]
+
+        dfs = []
+        ## Captured carbon in each zone in each time step
+        df = DataFrame(
+            Term = ["Captured Carbon By $(Zones[z])" for z in 1:Z],
+            Zone = Zones,
+            Total = 0,
+        )
+
+        df = hcat(df, DataFrame(round.(value.(MESS[:eHCapture]); sigdigits = 6), :auto))
+
+        push!(dfs, df)
+
+        if !isempty(CCS)
+            ## Captured carbon from generation in each zone in each time step
+            df = DataFrame(
+                Term = ["Captured Carbon From Generation By $(Zones[z])" for z in 1:Z],
+                Zone = Zones,
+                Total = 0,
+            )
+
+            df = hcat(df, DataFrame(round.(value.(MESS[:eHCaptureByGen]); sigdigits = 4), :auto))
+
+            push!(dfs, df)
+        end
+
+        ## Gather all captured carbon dataframes into one
+        df = reduce(vcat, dfs)
+
+        auxNew_Names = [
+            Symbol("Term")
+            Symbol("Zone")
+            Symbol("Total")
+            tsymbols
+        ]
+        rename!(df, auxNew_Names)
+
+        df[!, :Total] = round.(sum(df[!, c] for c in tsymbols); sigdigits = 4)
+
+        ## CSV writing
+        CSV.write(joinpath(path, "captured_carbon_by_zone.csv"), permutedims(df, "Term"))
+    end
+end
