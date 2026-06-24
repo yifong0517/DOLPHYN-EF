@@ -1,0 +1,25 @@
+# Gurobi Solver Parameters
+# Common solver settings
+Feasib_Tol: 1.0e-6            # Constraint (primal) feasibility tolerances
+Optimal_Tol: 1.0e-6           # Dual feasibility tolerances
+TimeLimit: 43200              # Limits total time solver
+Crossover: 0                  # Barrier crossver strategy
+Presolve: 1                   # Controls presolve level
+Method: -1                    # Algorithm used to solve continuous models (including MIP root relaxation)
+Threads: 0                    # Number of threads to use for parallel optimization
+
+# Gurobi-specific solver settings
+MIPGap: 1.0e-4                # Relative (p.u. of optimal) mixed integer optimality tolerance for MIP problems (ignored otherwise)
+IterationLimit: 10000         # Limits total number of simplex iterations
+BarIterLimit: 10000           # Limits total number of barrier iterations
+BarConvTol: 1.0e-8            # Barrier convergence tolerance (determines when barrier terminates)
+NumericFocus: 0               # Numerical precision emphasis
+MyScaleFlag: -1               # Coefficient scaling
+BarObjRng: 1e+75              # Sets the maximum absolute value of the objective function
+PreDual: 0                    # Decides whether presolve should pass the primal or dual linear programming problem to the LP optimization algorithm
+AggFill: 10                   # Allowed fill during presolve aggregation
+
+# Gurobi log file
+OutputFlag: 1                 # Controls Gurobi output
+LogFile: "gurobi.log"         # Filename for gurobi log
+LogToConsole: 1               # Control console logging

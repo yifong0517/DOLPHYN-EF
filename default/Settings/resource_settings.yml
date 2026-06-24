@@ -1,0 +1,14 @@
+FuelPath: "Fuels_data.csv" # File name which stores prices of fuels
+ElectricityPath: "Electricity_data.csv" # File name which stores prices of electricity
+HydrogenPath: "Hydrogen_data.csv" # File name which stores prices of hydrogen
+BioenergyPath: "Bioenergy_data.csv" # File name which stores prices of bioenergy
+CarbonPath: "Carbon_data.csv" # File name which stores prices of carbon
+ResidualPath: "Residual_data.csv" # File name which stores prices of residual including straw and husk
+
+DisposalPath: "Carbon_disposal.csv" # File name which stores data of carbon disposal policy
+
+FuelsAvailabilityPath: "Fuels_availability.csv" # File name which stores data of fuels availability
+ElectricityAvailabilityPath: "Electricity_availability.csv" # File name which stores data of electricity availability
+HydrogenAvailabilityPath: "Hydrogen_availability.csv" # File name which stores data of hydrogen availability
+CarbonAvailabilityPath: "Carbon_availability.csv" # File name which stores data of carbon availability
+BioenergyAvailabilityPath: "Bioenergy_availability.csv" # File name which stores data of bioenergy availability

@@ -1,0 +1,15 @@
+# COPT Solver Parameters
+# Common solver settings
+FeasTol: 1e-6                 # Constraint (primal) feasibility tolerances
+TimeLimit: 43200              # Limits total time solver
+Crossover: 0                  # Barrier crossver strategy
+Presolve: 1                   # Controls presolve level
+Method: -1                    # Algorithm used to solve LP continuous models
+Threads: 0                    # Number of threads to use for parallel optimization
+
+# COPT-specific solver settings
+
+# COPT log file
+Logging: 1                    # Controls COPT output
+LogFile: "copt.log"           # Filename for COPT log
+LogToConsole: 1               # Control console logging

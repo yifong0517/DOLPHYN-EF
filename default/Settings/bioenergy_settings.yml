@@ -1,0 +1,32 @@
+# Bioenergy Model Options
+NetworkExpansion: 1 # Transmission network expansional; 0 = not active; 1 = active systemwide
+
+ResidualTransport: 1 # Whether to model residual transport; 0 = not active; 1 = active
+
+ModelTrucks: 1 # Whether to model truck in hydrogen supply chain - 0 - not included, 1 - included
+TruckInteger: 0 # Whether to model truck capacity as discrete or integer - 0 - continuous capacity, 1- discrete capacity
+
+ModelStorage: 1 # Storage modeling; 0 = not active; 1 = active
+StorageExpansion: 1 # Storage capacity expansion; 0 = not active; -1 = all storage should not expand; 0 = not active, stick to original inputs; 1 = all storage could expand
+IncludeExistingSto: 0 # Whether to include sunk costs of existing storage in objective; 0 = not active; 1 = active
+InitialBioVolume: 0 # Initial Biomass volume in warehouse
+
+CO2Policy: [4] # CO2 emissions cap for HSC only; 0 = not active (no CO2 emission limit); 1 = mass-based emission limit constraint; 2 = load + rate-based emission limit constraint; 3 = generation + rate-based emission limit constraint; 4 = emissions penalized via a carbon price
+
+Residuals: ["Corn Straw", "Corn cob"] # Modeled residuals in bioenergy sector
+HVs: [18, 20] # Heat values for residuals when used in energy sector in unit MJ/kg
+
+# Data file name
+TrucksPath: "Trucks.csv" # File name which stores data of trucks
+RoutesPath: "Routes.csv" # File name which stores data of routes
+StoragePath: "Warehouse.csv" # File name which stores data of storage
+EmissionPath: "Policy_emission.csv" # File name which stores data of emission policy
+
+# Filter generator, network and storage using zones
+Zones: ["All"] # Bioenergy Zone list for modeling - 'All' denotes zone list in global settings
+
+# Filter network using types
+TruckSet: ["All"] # Modeled truck candidate type set - 'All' stands for all truck types
+
+# Filter storage using types
+StorageSet: ["All"] # Modeled storage candidate type set - 'All' stands for all storage types

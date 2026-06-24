@@ -1,0 +1,73 @@
+# Power Model Options
+GenerationExpansion: 1 # Generation capacity expansion; -1 = all generators should not expand; 0 = not active, stick to original inputs; 1 = all generators could expand
+IncludeExistingGen: 0 # Whether to include sunk costs of existing generators in objective; 0 = not active; >0 = active and denotes the costs recovery ratio
+UCommit: 0 # Unit committment of thermal power plants; 0 = not active; 1 = active using integer clustering; 2 = active using linearized clustering
+
+ModelTransmission: 1 # Transmission network modeling; 0 = not active; 1 = DC power flow; 2 = AC power flow
+NetworkExpansion: 1 # Transmission network capacity expansion; -1 = all lines should not expand; 0 = not active, stick to original inputs; 1 = all lines could expand
+IncludeExistingNetwork: 0 # Whether to include sunk costs of existing transmission lines in objective; 0 = not active; >0 = active and denotes the costs recovery ratio
+LineLossSegments: 0 # Number of segments used in piecewise linear approximation of transmission losses; 1 = linear, >2 = piecewise quadratic
+DCPowerFlow: 0 # DC power flow modeling; 0 = not active; 1 = active
+
+ModelStorage: 1 # Storage modeling; 0 = not active; 1 = active
+StorageExpansion: 1 # Storage capacity expansion; 0 = not active; -1 = all storage should not expand; 0 = not active, stick to original inputs; 1 = all storage could expand
+IncludeExistingSto: 0 # Whether to include sunk costs of existing storage in objective; 0 = not active; >0 = active and denotes the costs recovery ratio
+BatteryAging: 0 # Battery aging modeling; 0 = not active; 1 = active
+
+AllowNse: 1 # Whether to allow non-served energy; 0 = not active; 1 = active
+
+ScaleEffect: 0 # Whether to model learning-by-doing effect; 0 = not active; 1 = active
+
+CO2Policy: [4] # CO2 emissions cap for power system; 0 = not active (no CO2 emission limit); 1 = mass-based emission limit constraint; 2 = load + rate-based emission limit constraint; 3 = generation + rate-based emission limit constraint; 4 = emissions penalized via a carbon price
+
+CapReserve: 0 # Power system capacity reserve modeling; 0 = not active; >=1 = active and denotes the number of capacity reserve
+PReserve: 0 # Power system primary reserve modeling; 0 = not active; 1 = active
+SReserve: 0 # Power system secondary reserve modeling; 0 = not active; 1 = active
+
+MinCapacity: 0 # Power system min technology capacity requirements; 0 = not active; 1 = active; 2 = globally active
+MaxCapacity: 0 # Power system max technology capacity requirements; 0 = not active; 1 = active; 2 = globally active
+
+EnergyShareStandard: 0 # Energy share standard; 0 = not active; 1 = renewable portfolio standard (RPS); 2 = clean electricity standard (CES); 3 = combined RPS and CES policies
+
+CO2Disposal: 0 # CO2 disposal; 0 = not active; 1 = active
+
+# Data file name
+GeneratorPath: "Generators.csv" # File name which stores data of generators
+VariabilityPath: "Generators_variability.csv" # File name which stores data of generators' variability
+NetworkPath: "Network.csv" # File name which stores data of network
+StoragePath: "Storage.csv" # File name which stores data of storage
+DemandPath: "Demand.csv" # File name which stores data of demand
+NsePath: "Nse.csv" # File name which stores data of non served energy
+EmissionPath: "Policy_emission.csv" # File name which stores data of emission policy
+CapReservePath: "Policy_capacity_reserve.csv" # File name which stores data of capacity reserve policy
+ReservePath: "Policy_reserve.csv" # File name which stores data of reserve policy
+MinCapacityPath: "Policy_capacity_minimum.csv" # File name which stores data of min capacity requirements policy
+MaxCapacityPath: "Policy_capacity_maximum.csv" # File name which stores data of max capacity requirements policy
+EnergySharePath: "Policy_share.csv" # File name which stores data of energy share policy
+DisposalPath: "Policy_carbon_disposal.csv" # File name which stores data of CO2 disposal policy
+
+# Filter generator, network and storage using zones
+Zones: ["All"] # Power Zone list for modeling - 'All' denotes zone list in global settings
+
+# Sub zone topology modeling
+SubZone: 0 # Whether to model power sector sub-zones; 0 = not active; 1 = active
+SubZoneKey: "" # Column name in generator data file which stores sub zone criteria
+
+# Filter generator using type
+GeneratorSet: ["All"] # Modeled generator candidate type set - 'All' stands for all generator types
+GeneratorIndex: ["All"] # Modeled generator candidate index set - 'All' stands for all generators
+
+# Filter network using type
+LineSet: ["All"] # Modeled transmission line candidate type set - 'All' stands for all transmission line types
+
+# Filter storage using type
+StorageSet: ["All"] # Modeled storage candidate type set - 'All' stands for all storage types
+StorageIndex: ["All"] # Modeled storage index set - 'All' stands for all storage
+
+# Generator type set
+CFG: ["Coal", "Bituminous Coal", "Lignite Coal"] # Coal-fired generators fuel type candidate
+GFG: ["NG", "Natural Gas", "LNG", "Coal Gas", "Marsh Gas", "Biogas"] # Gas-fired generators fuel type candidate
+OFG: ["Oil", "Diesel"] # Oil-fired generators fuel type candidate
+NFG: ["Nuclear", "Uranium"] # Nuclear-fired generators fuel type candidate
+HFG: ["Hydrogen", "H2"] # Hydrogen-fired generators fuel type candidate
+BFG: ["Biomass", "Biomass Briquette", "BioSolidFuel", "Biomass Moulding Fuel", "Straw"] # Biomass-fired generators fuel type candidate

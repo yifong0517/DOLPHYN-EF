@@ -1,0 +1,37 @@
+# Foodstuff Model Option
+AllowImport: 1 # Whether to allow crop import; 0 = not active; 1 = active
+AllowExport: 1 # Whether to allow crop export; 0 = not active; 1 = active
+
+CropTransport: 1 # Whether to model crop transport; 0 = not active; 1 = active
+FoodTransport: 1 # Whether to model food transport; 0 = not active; 1 = active
+
+ModelTrucks: 1 # Whether to model truck in hydrogen supply chain - 0 - not included, 1 - included
+TruckExpansion: 1 # Transmission network expansional; 0 = not active; 1 = active systemwide
+TruckInteger: 0 # Whether to model truck capacity as discrete or integer - 0 - continuous capacity, 1- discrete capacity
+
+CropRotation: 0 # Whether to model crop rotation in warehouse - 0 - not included, 1 - included
+InitialCropVolume: 0 # Initial crop volume in warehouse
+InitialFoodVolume: 0 # Initial food volume in warehouse
+
+YearlyBalance: 1 # Yearly balance of foodstuff sector
+
+Crops: ["Corn", "Rice", "Wheat"] # List of modeled crops
+
+ReferenceYear: "2020" # Reference year for the model
+ArableAreaDivision: "mannual" # Arable area division; "mannual" = mannual division; "automatic" = automatic division
+
+AmmoniaRateUrea: 0.57 # Ammonia consumption rate per tonne of urea
+CarbonRateUrea: 0.75 # Carbon consumption rate per tonne of urea
+HydrogenRateAmmonia: 0.18 # Hydrogen consumption rate per tonne of ammonia
+NitrogenRateAmmonia: 0.82 # Nitrogen consumption rate per tonne of ammonia
+
+# Data file name
+ImportPath: "Import.csv" # File name which stores data of crop import
+ExportPath: "Export.csv" # File name which stores data of crop export
+LandPath: "Land.csv" # File name which stores data of land
+CropPath: "Crops.csv" # File name which stores data of crops
+CropTimePath: "Crop_Time.csv" # File name which stores data of crops' phenology
+TrucksPath: "Trucks.csv" # File name which stores data of trucks
+RoutesPath: "Routes.csv" # File name which stores data of routes
+StoragePath: "Warehouse.csv" # File name which stores data of storage
+DemandPath: "Demand.csv" # File name which stores data of demand

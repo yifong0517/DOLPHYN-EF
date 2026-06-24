@@ -1,0 +1,62 @@
+# Synfuels Model Options
+GenerationExpansion: 1 # Generation capacity expansion; -1 = all generators should not expand; 0 = not active, stick to original inputs; 1 = all generators could expand
+IncludeExistingGen: 0 # Whether to include sunk costs of existing generators in objective; 0 = not active; >0 = active and denotes the costs recovery ratio
+GenCommit: 0 # Continuous or discrete capacity representation of H2 production technologies with unit commitment; 0 = modeled as continuous variables; 1 = modeled as integer variables;
+ModelFLH: 0 # Whether to model full load hours (FLH) in ammonia generation; 0 = not active; 1 = active
+
+TransportMode: 4 # Ammonia transport mode; 0 = not active; 1 = simple; 2 = pipeline; 3 = truck; 4 = both pipeline and truck
+SimpleTransport: 0 # Whether to model simple ammonia transport; 0 = not active; 1 = active
+
+NetworkExpansion: 1 # Transmission network expansional; 0 = not active; 1 = active systemwide
+
+ModelTrucks: 1 # Whether to model truck in ammonia supply chain - 0 - not included, 1 - included
+TruckInteger: 0 # Whether to model truck capacity as discrete or integer - 0 - continuous capacity, 1- discrete capacity
+
+ModelStorage: 1 # Storage modeling; 0 = not active; 1 = active
+StorageExpansion: 1 # Storage capacity expansion; 0 = not active; -1 = all storage should not expand; 0 = not active, stick to original inputs; 1 = all storage could expand
+IncludeExistingSto: 0 # Whether to include sunk costs of existing storage in objective; 0 = not active; >0 = active and denotes the costs recovery ratio
+
+AllowNse: 1 # Whether to allow non-served energy; 0 = not active; 1 = active
+
+ScaleEffect: 0 # Whether to include scale effect in the cost of carbon capture; 0 = not active; 1 = active
+
+CO2Policy: [4] # CO2 emissions cap for HSC only; 0 = not active (no CO2 emission limit); 1 = mass-based emission limit constraint; 2 = load + rate-based emission limit constraint; 3 = generation + rate-based emission limit constraint; 4 = emissions penalized via a carbon price
+
+MinCapacity: 0 # Ammonia system min technology capacity requirements; 0 = not active; 1 = active; 2 = globally active
+MaxCapacity: 0 # Ammonia system max technology capacity requirements; 0 = not active; 1 = active; 2 = globally active
+
+CO2Disposal: 0 # CO2 disposal; 0 = not active; 1 = active
+
+# Data file name
+GeneratorPath: "Generators.csv" # File name which stores data of generators
+VariabilityPath: "Generators_variability.csv" # File name which stores data of generators' variability
+TrucksPath: "Trucks.csv" # File name which stores data of trucks
+RoutesPath: "Routes.csv" # File name which stores data of routes
+StoragePath: "Storage.csv" # File name which stores data of storage
+DemandPath: "Demand.csv" # File name which stores data of demand
+NsePath: "Nse.csv" # File name which stores data of non served energy
+EmissionPath: "Policy_emission.csv" # File name which stores data of emission policy
+MinCapacityPath: "Policy_capacity_minimum.csv" # File name which stores data of min capacity requirements policy
+MaxCapacityPath: "Policy_capacity_maximum.csv" # File name which stores data of max capacity requirements policy
+DisposalPath: "Policy_carbon_disposal.csv" # File name which stores data of CO2 disposal policy
+
+# Filter generator, network and storage using zones
+Zones: ["All"] # Synfuels Zone list for modeling - 'All' denotes zone list in global settings
+
+# Sub zone topology modeling
+SubZone: 0 # Whether to model ammonia sector sub-zones; 0 = not active; 1 = active
+SubZoneKey: "" # Column name in generator data file which stores sub zone criteria
+
+# Filter generator using types
+GeneratorSet: ["All"] # Modeled generator candidate type set - 'All' stands for all generator types
+GeneratorIndex: ["All"] # Modeled generator candidate index set - 'All' stands for all generator indices
+
+# Filter network using types
+TruckSet: ["All"] # Modeled truck candidate type set - 'All' stands for all truck types
+
+# Filter storage using types
+StorageSet: ["All"] # Modeled storage candidate type set - 'All' stands for all storage types
+StorageIndex: ["All"] # Modeled storage index set - 'All' stands for all storage
+
+# Generator type set
+BMG: ["Biomass", "Biomass Briquette", "BioSolidFuel", "Biomass Moulding Fuel", "Straw"] # Biomass liquefaction fuel type candidate

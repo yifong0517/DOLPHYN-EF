@@ -1,0 +1,10 @@
+# CPLEX Solver Parameters
+Feasib_Tol: 1.0e-6   # Constraint (primal) feasibility tolerances
+Optimal_Tol: 1.0e-4  # Dual feasibility tolerances
+Pre_Solve: 1         # Controls presolve level
+TimeLimit: 43200     # Limits total time solver
+MIPGap: 1.0e-4       # Relative (p.u. of optimal) mixed integer optimality tolerance for MIP problems (ignored otherwise)
+Method: -1           # -1 # Algorithm used to solve continuous models (including MIP root relaxation)
+BarConvTol: 1.0e-8   # Barrier convergence tolerance (determines when barrier terminates)
+NumericFocus: 0      # Numerical precision emphasis
+SolutionType: 2      # Solution type for LP or QP
